@@ -3,7 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css'; // Import Font Awesome
 import { login } from '../../../Services/ApiServices';
 import { useNavigate } from 'react-router-dom';
-import logo from '/logo.png'; // Update path as needed
+import logo from '/logo.png'; // Update path as needed\
+import Cookies from 'js-cookie';
 
 const AdminLogin = () => {
   const [roomNoAssigned, setRoomNoAssigned] = useState('');
@@ -24,6 +25,8 @@ const AdminLogin = () => {
         localStorage.setItem('logedAdmin', JSON.stringify(logedAdmin));
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
+        Cookies.set('accessToken', accessToken, { expires: 1, secure: true, sameSite: 'Strict' }); // expires in 1 day
+        Cookies.set('refreshToken', refreshToken, { expires: 7, secure: true, sameSite: 'Strict' }); // expires in 7 days
 
         if (logedAdmin.isSuperAdmin) {
           navigate('/superadmin'); // Use navigate for redirection

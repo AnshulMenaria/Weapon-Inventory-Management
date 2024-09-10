@@ -72,8 +72,10 @@ import { WeaponCategory } from '../models/weaponCategory.models.js';
         );
       
         const options = {
-          httpOnlly: true,
-          secure: true,
+          httpOnly: true,
+          secure: req.secure || req.headers['x-forwarded-proto'] === 'https', // Adjust based on connection security
+          sameSite: req.secure || req.headers['x-forwarded-proto'] === 'https' ? 'None' : 'Lax', // Adjust based on connection security
+          maxAge: 24 * 60 * 60 * 1000  // Cookie expiration time (1 day)
         };
       
         return res
@@ -102,7 +104,7 @@ import { WeaponCategory } from '../models/weaponCategory.models.js';
       
         const option = {
           httpOnly: true,
-          secure: true,
+          secure: false,
         };
       
         return res
@@ -131,8 +133,10 @@ import { WeaponCategory } from '../models/weaponCategory.models.js';
 
       
         const options = {
-          httpOnlly: true,
-          secure: true,
+          httpOnly: true,
+          secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
+          sameSite: req.secure || req.headers['x-forwarded-proto'] === 'https' ? 'None' : 'Lax',
+          maxAge: 24 * 60 * 60 * 1000
         };
       
         return res
@@ -203,8 +207,10 @@ import { WeaponCategory } from '../models/weaponCategory.models.js';
 
 
         const options = {
-          httpOnlly: true,
-          secure: true,
+          httpOnly: true,
+          secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
+          sameSite: req.secure || req.headers['x-forwarded-proto'] === 'https' ? 'None' : 'Lax',
+          maxAge: 24 * 60 * 60 * 1000
         };
 
         return res
@@ -307,4 +313,4 @@ import { WeaponCategory } from '../models/weaponCategory.models.js';
 
 
 
-      export { getDashbord, registerAdmin, signOutAdmin, signInAdmin , fatchData , fetchRoomIncharge , changePassword , superLogin} ;
+export { getDashbord, registerAdmin, signOutAdmin, signInAdmin , fatchData , fetchRoomIncharge , changePassword , superLogin} ;

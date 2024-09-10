@@ -8,10 +8,7 @@ import issuanceRouter from "./routes/issued.routes.js";
 
 const app = express();
 
-app.use (cors ({
-    origin : process.nextTick.CORS_ORIGIN,
-    credential : true
-}))
+app.use(cors());
 
 app.use(express.json({limit : "16kb"}))
 app.use(express.urlencoded({extended :true}))
@@ -29,6 +26,5 @@ app.use("/api/issuance", issuanceRouter);
 
 
  
-// localhost:10000/api/users/demo
 
 export {app}

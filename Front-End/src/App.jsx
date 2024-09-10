@@ -79,7 +79,7 @@ const App = () => {
               path="/addsubcategory"
               element={<ProtectedRoute element={<SubCategory />} />}
             />
-            <Route
+            <Route 
               path="/addBullet"
               element={<ProtectedRoute element={<AddBullet />} />}
             />
